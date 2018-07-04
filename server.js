@@ -78,11 +78,11 @@ else if (length === 3 && txt[0] === '1') {
 }   
 
 else if (length === 4 && text[3] === '1' && text[0] === '1') {
-    message += 'CON Thank you, transaction succesfull\n';
+    message += 'END Thank you, transaction succesfull\n';
 }
 
 else if (length === 4 && text[3] === '2' && text[0] === '1') {
-    message += 'CON Transaction has been cancelled\n';
+    message += 'END Transaction has been cancelled\n';
 
 
 //send message to client
