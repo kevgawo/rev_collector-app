@@ -1,26 +1,34 @@
 const app = require('express')();
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const logger = require('morgan');
 const mysql = require('mysql');
-const UssdMenu = require('ussd-menu-builder');
+// const UssdMenu = require('ussd-menu-builder');
 const port = process.env.PORT || 3000;
 const db = require('./models')
+const Sequelize = require('sequelize')
 
 //create a connection to the database
-var connection = mysql.createConnection({
+
+var connection = new Sequelize({
     host : 'localhost',
-    user : 'gawo',
-    password : '@getdata25',
-    database :  'cash_register'
+    user : 'root',
+    password : 'letmein',
+    database :  'revenue_collection',
+    dialect: 'mysql',
+    insecureAuth: true
 });
 
+connection.sync({
+    logging:console.log
+}).then(function(){
 
-// sequelize.authenticate().then(() => {
-    // console.log('Connection has been established successfully.');
-//   })
-//   .catch(err => {
-    // console.error('Unable to connect to the database:', err);
-//   });
+})
+Sequelize.authenticate().then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 
 app.use(logger('dev'));
 // app.use(bodyparser.json());
@@ -44,8 +52,7 @@ app.post('*', function (req,res){
     console.log(phoneNumber,sessionId,Channel,customerName,token)
 
 
-var lenght = text.split('*').length; 
-var txt = text.split('*');   
+   
 //check if the user is a revenue collector or customer
 
 if (text === ''){
@@ -91,7 +98,7 @@ else if (length === 4 && text[3] === '2' && text[0] === '1') {
             time_of_transaction: "",
             transaction_status: options[3]
         }).then(function(transaction) {
-            console.log('trasnsaction was copmleted',transaction );
+            console.log('transaction was copmleted',transaction );
         });
 }
 
@@ -100,3 +107,4 @@ else if (length === 4 && text[3] === '2' && text[0] === '1') {
 app.listen(port, function () {
     console.log(`Server running on port ${port}`)
 });
+
