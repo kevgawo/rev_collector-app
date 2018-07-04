@@ -4,7 +4,7 @@ const logger = require('morgan');
 const mysql = require('mysql');
 // const UssdMenu = require('ussd-menu-builder');
 const port = process.env.PORT || 3000;
-const db = require('./models')
+const db = require('./models');
 const Sequelize = require('sequelize')
 
 //create a connection to the database
@@ -23,12 +23,15 @@ connection.sync({
 }).then(function(){
 
 })
-Sequelize.authenticate().then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
+
+// var test = Sequelize.authenticate().then(() => {
+    // console.log('Connection has been established successfully.');
+//   })
+//   .catch(err => {
+    // console.error('Unable to connect to the database:', err);
+//   });
+
+// console.log test;
 
 app.use(logger('dev'));
 // app.use(bodyparser.json());
