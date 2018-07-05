@@ -47,16 +47,16 @@ app.get('*', function(req, res){
 //the parameters that we will be getting from the request made by user from hubtel
 
 app.post('*', function (req,res){
-    var phoneNumber = req.body.phoneNumber || 0;
-    var sessionId = req.body.sessionId || 0;
+    var phonenumber = req.body.phoneNumber || 0;
+    var sessionid = req.body.sessionId || 0;
 //     let Channel = req.body.Channel;
 //     let customerName = req.body.CustomerName;
 //     let token = req.body.Token;
-    var serviceCode = req.body.serviceCode || 0;
+    var servicecode = req.body.serviceCode || 0;
     var text = req.body.text || 'Okay'
 
 
-    console.log(phoneNumber,sessionId,serviceCode)
+    console.log(phonenumber,sessionid,servicecode)
 
 
    
