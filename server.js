@@ -1,5 +1,5 @@
 const app = require('express')();
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const logger = require('morgan');
 const mysql = require('mysql');
 // const UssdMenu = require('ussd-menu-builder');
@@ -37,8 +37,8 @@ connection.sync({
 // console.log test;
 
 app.use(logger('dev'));
-// app.use(bodyparser.json());
-// app.use(bodyparser.urlencoded({extended: true}));
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended: true}));
 
 app.get('*', function(req, res){
     res.send('this a ussd application for revenue collectors')
@@ -57,6 +57,9 @@ app.post('*', function (req,res){
 
 
 //     console.log(phonenumber,sessionid,servicecode)
+    var length = text.split('*').length;
+    var txt = text.split('*');
+
 
 
    
@@ -65,8 +68,8 @@ app.post('*', function (req,res){
 if (text === ''){
     message = `CON Welcome to Jumeni Pay \n`;
     message += '1: Collect Payment \n';
-    message += '1: Register New Customer \n';
-    message += '1: Report an Issue \n';
+    message += '2: Register New Customer \n';
+    message += '3: Report an Issue \n';
 }
 
 //collect payment
@@ -75,7 +78,7 @@ else if (text === '1') {
     message += 'CON Enter Customer Code \n';
 }
 
-else if (length === 2 && text[0] === '1'){
+else if (length === 2 && txt[0] === '1'){
     message += 'CON Enter Amount Collected';
 }
 
@@ -84,11 +87,11 @@ else if (length === 3 && txt[0] === '1') {
     message += '1)YeS / 2) No';
 }   
 
-else if (length === 4 && text[3] === '1' && text[0] === '1') {
+else if (length === 4 && txt[3] === '1' && txt[0] === '1') {
     message += 'END Thank you, transaction succesfull\n';
 }
 
-else if (length === 4 && text[3] === '2' && text[0] === '1') {
+else if (length === 4 && txt[3] === '2' && txt[0] === '1') {
     message += 'END Transaction has been cancelled\n';
 
 
