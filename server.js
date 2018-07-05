@@ -47,16 +47,16 @@ app.get('*', function(req, res){
 //the parameters that we will be getting from the request made by user from hubtel
 
 app.post('*', function (req,res){
-    var phonenumber = req.body.phoneNumber || 0;
-    var sessionid = req.body.sessionId || 0;
+    var phonenumber = 0246484255;
+    var sessionid = 1;
 //     let Channel = req.body.Channel;
 //     let customerName = req.body.CustomerName;
 //     let token = req.body.Token;
-    var servicecode = req.body.serviceCode || 0;
-    var text = req.body.text || 'Okay'
+    var servicecode = 1;
+    var text = 'Okay';
 
 
-    console.log(phonenumber,sessionid,servicecode)
+//     console.log(phonenumber,sessionid,servicecode)
 
 
    
@@ -99,7 +99,7 @@ else if (length === 4 && text[3] === '2' && text[0] === '1') {
 //time and date of transaction
 
         db.Transactions.create({
-            phoneNumber: "",
+            phoneNumber: phonenumber,
             customerCode: options[1],
             amountCollected: options[2],
             time_of_transaction: "",
