@@ -24,6 +24,9 @@ connection.sync({
 
 })
 
+// hubtel Api Key
+//4e7e96a047c953c8a0584285ca7d0fdaac187089f276a79aa6486cc08dba5f2d
+
 // var test = Sequelize.authenticate().then(() => {
     // console.log('Connection has been established successfully.');
 //   })
@@ -44,15 +47,16 @@ app.get('*', function(req, res){
 //the parameters that we will be getting from the request made by user from hubtel
 
 app.post('*', function (req,res){
-    let phoneNumber = req.body.CustomerMsisdn;
+    let phoneNumber = req.body.phoneNumber;
     let sessionId = req.body.sessionId;
-    let Channel = req.body.Channel;
-    let customerName = req.body.CustomerName;
-    let token = req.body.Token;
+//     let Channel = req.body.Channel;
+//     let customerName = req.body.CustomerName;
+//     let token = req.body.Token;
+    let serviceCode = req.body.serviceCode;
     var text = req.body.text
 
 
-    console.log(phoneNumber,sessionId,Channel,customerName,token)
+    console.log(phoneNumber,sessionId,serviceCode)
 
 
    
